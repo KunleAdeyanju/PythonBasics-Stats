@@ -2,13 +2,13 @@
 from typing import List
 
 def zcount(data: List[float]) -> float :
-    pass
+    return len(data)
 
 def zmean(data: List[float]) -> float :
-    pass
+    return (sum(data)/len(data))
 
 def zmode(data: List[float]) -> float :
-    pass
+    return max(set(data), key=data.count)
 
 def zmedian(data: List[float]) -> float :
     pass
