@@ -1,5 +1,6 @@
 
 from typing import List
+import math
 
 def zcount(data: List[float]) -> float :
     return len(data)
@@ -11,17 +12,27 @@ def zmode(data: List[float]) -> float :
     return max(set(data), key=data.count)
 
 def zmedian(data: List[float]) -> float :
+    dat = sorted(data)
+    if len(data) % 2 == 1:
+        return dat[len(data)/2]
+    else:
+        return (dat[(len(data)-1)/2] + dat[(len(data)+1)/2])/2
     pass
 
 def zvariance(data: List[float]) -> float :
-    pass
+    sum = 0
+    for i in data:
+        sum += (i-zmean(data)) ** 2
+    
+    return sum/(len(data) -1)
+
 	
 def zstddev(data: List[float]) -> float :
     # sqrt of variance
-    pass
+    return math.sqrt(zvariance(data))
 
 def zstderr(data: List[float]) -> float :
-    pass
+    return zstddev(data)/ len(data)
 
 def cov(a, b):
     pass
