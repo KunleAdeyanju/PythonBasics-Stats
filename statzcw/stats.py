@@ -38,7 +38,17 @@ def cov(a, b):
     pass
 
 def zcorr(datax: List[float], datay: List[float]) -> float :
-    pass
+    sumx = 0
+    for i in datax:
+        sumx += (i-zmean(datax)) ** 2
+
+    sumy = 0
+    for i in datay:
+        sumy += (i-zmean(datay)) ** 2
+    
+    root_denom = math.sqrt((sumx ** 2)(sumy ** 2))
+
+    return (sumx * sumy) / (root_denom)
 
 
 def readDataFile(file):
