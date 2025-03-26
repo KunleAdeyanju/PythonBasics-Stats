@@ -13,11 +13,11 @@ def zmode(data: List[float]) -> float :
 
 def zmedian(data: List[float]) -> float :
     dat = sorted(data)
-    if len(data) % 2 == 1:
-        return dat[len(data)/2]
-    else:
-        return (dat[(len(data)-1)/2] + dat[(len(data)+1)/2])/2
-    pass
+    #if len(data) % 2 == 1:
+    return dat[len(data)//2]
+    #else:
+    #    return (dat[(len(data)-1)/2] + dat[(len(data)+1)/2])/2
+
 
 def zvariance(data: List[float]) -> float :
     sum = 0
@@ -35,21 +35,30 @@ def zstderr(data: List[float]) -> float :
     return zstddev(data)/ len(data)
 
 def cov(a, b):
-    pass
+    suma = 0
+    for i in a:
+        suma += (i-zmean(a))
+    
+    sumb = 0
+    for i in b:
+        sumb += (i-zmean(b))
+
+    return ((suma*sumb)/len(a))
+
 
 def zcorr(datax: List[float], datay: List[float]) -> float :
-    sumx = 0
-    for i in datax:
-        sumx += (i-zmean(datax)) ** 2
+    # sumx = 0
+    # for i in datax:
+    #     sumx += (i-zmean(datax))
 
-    sumy = 0
-    for i in datay:
-        sumy += (i-zmean(datay)) ** 2
+    # sumy = 0
+    # for i in datay:
+    #     sumy += (i-zmean(datay))
     
-    root_denom = math.sqrt((sumx ** 2)(sumy ** 2))
+    # root_denom = math.sqrt((sumx ** 2)(sumy ** 2))
 
-    return (sumx * sumy) / (root_denom)
-
+    # return (sumx * sumy) / (root_denom)
+    return (cov(datax, datay) / (zstddev(datax) * zstddev(datay)))
 
 def readDataFile(file):
     x,y = [], []
